@@ -1,0 +1,57 @@
+<html>
+   <head>
+      <title>Dashboard</title>
+      <link rel = "stylesheet" type = "text/css" href = "css/bootstrap.css">
+      <link rel = "stylesheet" type = "text/css" href = "css/dc.css"/>
+      <link rel="stylesheet" href="css/style.css" />
+      <style>
+         .dc-chart { font-size: 12px; }
+         .dc-grid-top { padding-left: 10px; font-size: 14px; font-weight: bold; }
+         .dc-grid-item { padding-left: 10px; font-size: 12px; font-weight: normal; }
+      </style>
+
+      -- <script src = "js/d3.js"></script>
+      <script src = "js/crossfilter.js"></script>
+      <script src = "js/dc.js"></script> 
+      <script src="scripjs.js"></script>
+      
+   </head>
+   
+   <body>
+      <div>
+         <div style = "width: 800px;">
+            <div id = "mystats" class = "dc-data-count" style = "float: right">
+               <span class = "filter-count"></span> Orders selected out of <span
+                  class = "total-count"></span> | <a href = "javascript:dc.filterAll();
+                  dc.renderAll();">Reset All</a>
+            </div>
+         </div>
+
+         <div  class="container">
+            <div class="card chart">Card</div>
+            <div class="item-2 chart">Item2</div>
+            <div class="item-3 chart">Item3</div>
+            <div class="item-4 chart">Item4</div>
+            <div class="item-5 chart">Item5</div>
+            <div class="item-6 chart">Item6</div>
+            <div class="area1 chart"></div>
+           
+            <div class = "row chart"></div>
+            <div class = "pie chart"></div>
+            <div class="area2 chart"></div>
+            <div class="pie_product chart"></div>
+            <div class="area chart"></div>
+            
+         </div>
+
+         <div style = "clear: both">
+            <div class = "dc-data-grid" id = "mygrid"></div>
+         </div>
+      </div>
+
+      <script>
+        task();
+        
+      </script>
+   </body>
+</html>
