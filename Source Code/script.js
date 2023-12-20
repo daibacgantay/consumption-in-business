@@ -85,7 +85,7 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
    var Home_Revenue=MonthDimension.group().reduceSum(function(d) {if (d.Product_Category === "Home & Furniture") {return d.Revenue;}else{return 0;}});
    
    Areachart1.width(650)
-   .height(310)
+   .height(280)
    .x(d3.scaleLinear().domain([1,12]))
     .dimension(MonthDimension)
     .group(Electronic_Revenue,"Electronic")
@@ -93,7 +93,7 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
     .stack(Home_Revenue, "Home & Furniture")
     .stack(Fashion_Revenue, "Fashion")
     .renderArea(true)
-    .margins({top: 50, right: 10, bottom: 60, left: 80})
+    .margins({top: 50, right: 10, bottom: 40, left: 80})
     //.elasticY(true)
     .brushOn(true) // Sửa từ false -> true 
     .legend(dc.legend().legendText(function(d) {
