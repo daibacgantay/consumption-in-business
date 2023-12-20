@@ -4,23 +4,36 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>nhuc dau qua</title>
+  <title>Sale</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
-  <!-- <link rel = "stylesheet" type = "text/css" href = "bootstrap.css"> -->
-  <link rel = "stylesheet" type = "text/css" href = "css/dc.css"/>
+ 
   <link rel="stylesheet" href="css/style.css" />
+
+
+      <link rel = "stylesheet" type = "text/css" href = "css/dc.css"/>
+      <!-- <link rel = "stylesheet" type = "text/css" href = "css/bootstrap.css"> -->
+      <link type="text/css" href="css/leaflet.css" rel="stylesheet"/>
+      <link type="text/css" href="css/leaflet-legend.css" rel="stylesheet"/>
+
       <script src = "js/d3.js"></script>
       <script src = "js/crossfilter.js"></script>
       <script src = "js/dc.js"></script> 
       <script src="script.js"></script>
+      <script type="text/javascript" src="js/leaflet.js"></script>
+    <script src="js/colorbrewer.js"></script>
+    <script type="text/javascript" src="js/dc.leaflet.js"></script>
+
+
+
 </head>
 <body>
+  <div>
    <div class="container">
        <aside>
            
          <div class="top">
            <div class="logo">
-             <h2> <span class="danger">nhuc dau qua</span> </h2>
+             <h2> <span class="danger">Table of contents</span> </h2>
            </div>
            <div class="close" id="close_btn">
             <span class="material-symbols-sharp">
@@ -82,17 +95,19 @@
            <h1>Dashboard</h1>
 
           <div class="custom-select">
-            <select>
+            <button id= "reset"> Reset All </button> 
+            <!-- <select>
               <option value="">All</option>
               <option value="">1</option>
               <option value="">2</option>
               <option value="">3</option>
               <option value="">4</option>
               
-            </select>
+            </select> -->
+            
           </div>
 
-        <div class="insights">
+        <div class="insights" >
 
            <!-- start seling -->
             <div class="sales">
@@ -101,11 +116,11 @@
                 </span>
                <!-- <div class="middle"> -->
 
-              <div class="title_">
+              <div class="title_" id = "namesale">
                    Total Sales
               </div>
-              <div class="number_">
-                   $25,024
+              <div class="number_" id = "salenum">
+                   
               </div>
           
                
@@ -114,11 +129,11 @@
               <!-- start expenses -->
               <div class="expenses">
                 <span class="material-symbols-sharp">trending_up</span>
-                <div class="title_">
-                  Total Sales
+                <div class="title_" id="nameprofit">
+                  Total Profit
              </div>
-             <div class="number_">
-                  $25,024
+             <div class="number_"  id = "profitnum">
+                  
              </div>
                 
              </div>
@@ -126,11 +141,11 @@
                <!-- start seling -->
                <div class="income">
                 <span class="material-symbols-sharp">percent</span>
-                <div class="title_">
-                  Total Sales
+                <div class="title_" id="namemargin">
+                  Margin
              </div>
-             <div class="number_">
-                  $25,024
+             <div class="number_" id = "marginvalue">
+                  
              </div>
                
              </div>
@@ -138,11 +153,10 @@
             <!-- start seling -->
             <div class="sales2">
               <span class="material-symbols-sharp">trending_up</span>
-              <div class="title_">
-                Total Sales
+              <div class="title_" id = "nameorder">
+                Total orders
            </div>
-           <div class="number_">
-                $25,024
+           <div class="number_" id = "ordervalue">
            </div>
               
            </div>
@@ -150,10 +164,10 @@
             <div class="sales2">
             <span class="material-symbols-sharp">trending_up</span>
             <div class="title_">
-              Total Sales
+              Average Delivery 
          </div>
-         <div class="number_">
-              $25,024
+         <div class="number_" id = "Avgday">
+              
          </div>
             
          </div> 
@@ -175,6 +189,10 @@
        <!-- end insights -->
       <div class="container2">
          <div class="area1 chart">
+          <strong>Revenue by Month</strong>
+          
+
+      
           <!-- <div class="icon">
             <span class="material-symbols-sharp">
               zoom_out_map
@@ -184,34 +202,9 @@
             chart
           </div> -->
          </div>
-         <div class="area2 chart">
-          <!-- <div class="icon">
-            <span class="material-symbols-sharp">
-              zoom_out_map
-          </div>
-          <div class="chart">
-            chart
-          </div> -->
-         </div> 
-         <div class="pie chart">
-          <!-- <div class="icon">
-            <span class="material-symbols-sharp">
-              zoom_out_map
-          </div>
-          <div class="chart">
-            chart
-          </div> -->
-         </div>
-         <div class="pie_product chart">
-          <!-- <div class="icon">
-            <span class="material-symbols-sharp">
-              zoom_out_map
-          </div>
-          <div class="chart">
-            chart
-          </div> -->
-         </div> 
+
          <div class="row chart">
+          <strong>Revenue of each product_category </strong>
           <!-- <div class="icon">
             <span class="material-symbols-sharp">
               zoom_out_map
@@ -220,6 +213,44 @@
             chart
           </div> -->
          </div>
+
+         <div class="pie chart">
+          <strong> Segment Customer </strong>
+          
+
+        
+          <!-- <div class="icon">
+            <span class="material-symbols-sharp">
+              zoom_out_map
+          </div>
+          <div class="chart">
+            chart
+          </div> -->
+         </div>
+
+         <div class="area2 chart">
+          <strong>Profit by Month</strong>
+          <!-- <div class="icon">
+            <span class="material-symbols-sharp">
+              zoom_out_map
+          </div>
+          <div class="chart">
+            chart
+          </div> -->
+         </div> 
+         
+         <div class="pie_product chart">
+          <strong>Days by Gain/Loss</strong>
+          <!-- Xoa div nay di nha -->
+          <!-- <div class="icon">
+            <span class="material-symbols-sharp">
+              zoom_out_map
+          </div>
+          <div class="chart">
+            chart
+          </div> -->
+         </div> 
+         
          <div class="map chart">
           <!-- <div class="icon">
             <span class="material-symbols-sharp">
@@ -237,27 +268,29 @@
         ------------------->
 
      
-      </div>
-
+      </div> 
+      
+<!-- 
       <div style = "clear: both">
          <div class = "dc-data-grid" id = "mygrid"></div>
-      </div>
+      </div> -->
    </div>
 
-
-
-
+   <!-- <div style = "width: 800px;">
+    <div id = "mystats" class = "dc-data-count" style = "float: right">
+       <span class = "filter-count"></span>
+        Orders selected out of 
+        <span
+          class = "total-count"></span> 
+          | <a href = "javascript:dc.filterAll();
+          dc.renderAll();">Reset All</a>
+    </div>
+ </div> -->
 
         <script>
           task();
           
         </script>
-         <div style = "width: 800px;">
-          <div id = "mystats" class = "dc-data-count" style = "float: right">
-             <span class = "filter-count"></span> Orders selected out of <span
-                class = "total-count"></span> | <a href = "javascript:dc.filterAll();
-                dc.renderAll();">Reset All</a>
-          </div>
-        </div>
+        
 </body>
 </html>
