@@ -55,10 +55,12 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
        choro
        .dimension(facilities)
        .group(facilitiesGroup)
-       .width(600)
+       .width(1182)
        .height(300)
        .center([20,-5])
        .renderPopup(true)
+       .margins({top: 20, right: 0, bottom: 0, left: 0})
+       
        .colors(colorbrewer.Reds[5])
        .colorDomain([
            d3.min(facilitiesGroup.all(), dc.pluck('value')),
@@ -82,8 +84,8 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
    var Auto_Revenue=MonthDimension.group().reduceSum(function(d) {if (d.Product_Category === "Auto & Accessories") {return d.Revenue;}else{return 0;}});
    var Home_Revenue=MonthDimension.group().reduceSum(function(d) {if (d.Product_Category === "Home & Furniture") {return d.Revenue;}else{return 0;}});
    
-   Areachart1.width(550)
-   .height(280)
+   Areachart1.width(650)
+   .height(310)
    .x(d3.scaleLinear().domain([1,12]))
     .dimension(MonthDimension)
     .group(Electronic_Revenue,"Electronic")
@@ -91,10 +93,12 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
     .stack(Home_Revenue, "Home & Furniture")
     .stack(Fashion_Revenue, "Fashion")
     .renderArea(true)
-    .margins({top: 80, right: 10, bottom: 40, left: 80})
+    .margins({top: 50, right: 10, bottom: 60, left: 80})
     //.elasticY(true)
     .brushOn(true) // Sửa từ false -> true 
-    .legend(dc.legend().x(430).y(10).itemHeight(7).gap(12))
+    .legend(dc.legend().legendText(function(d) {
+      return d.name;
+  }).itemHeight(13).gap(5).horizontal(true).legendWidth(300).itemWidth(140).x(280).y(10))
     .ordinalColors(['#3182bd', '#6baed6', '#9ecae1', '#c6dbef'])
     .yAxisLabel("Revenue")
     .xAxisLabel("Month")
@@ -113,7 +117,7 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
 
    
 
-   Areachart2.width(550)
+   Areachart2.width(650)
    .height(280)
    .x(d3.scaleLinear().domain([1,12]))
     .dimension(MonthDimension)
@@ -124,9 +128,11 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
   //   .elasticX(true)
   //   .elasticY(true)
     .renderArea(true)
-    .margins({top: 80, right: 10, bottom: 40, left: 80})
+    .margins({top: 50, right: 10, bottom: 40, left: 80})
     .brushOn(true)
-    .legend(dc.legend().x(430).y(10).itemHeight(7).gap(12))
+    .legend(dc.legend().legendText(function(d) {
+      return d.name;
+  }).itemHeight(13).gap(5).horizontal(true).legendWidth(300).itemWidth(140).x(280).y(0))
     .ordinalColors(['#3182bd', '#6baed6', '#9ecae1', '#c6dbef'])
     .yAxisLabel("Profit")
     .xAxisLabel("Month")
@@ -143,10 +149,16 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
 
   
 pieChart
-  .width(550)
-  .height(280)
+  .width(450)
+  .height(250)
   .dimension(genderDimension)
-  .group(genderGroup);
+  .group(genderGroup)
+  
+  
+  
+  
+  
+  
   //  .on('renderlet', function(chart) {
   //     // Add onClick event to the pie slices
   //     chart.selectAll('path').on('click', function(d) {
@@ -163,7 +175,7 @@ pieChart
 
    
 rowChart
-  .width(510)
+  .width(650)
   .height(270)
   .dimension(categoryDimension)
   .group(valueGroup2)
