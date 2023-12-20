@@ -30,7 +30,7 @@ var numberDisplay3 = dc.numberDisplay("#ordervalue", groupname);
 var numberDisplay4 = dc.numberDisplay("#marginvalue", groupname);
 var numberDisplay5 = dc.numberDisplay("#Avgday", groupname);
 
-d3.csv("https://raw.githubusercontent.com/phamvutuyetanh/DSDV/main/data_use_true.csv", rowConverter)
+d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/main/Data/data_use_forcode.csv", rowConverter)
  .then(function(Data) {
    var mycrossfilter = crossfilter(Data);
 
