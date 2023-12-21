@@ -284,11 +284,23 @@ Aesthetics
   display: grid;
   place-items: center;
 } */
+#reset{
+  margin-bottom: 15px;
+}
+#resetbt{
+  font-size: 3rem;
+  color:#000000;
+  height: 60px;
+  width:60px;
+  background-color: rgb(156, 150, 150);
+  padding-top:5px;
+}
 main .insights{
    display: grid;
    grid-template-columns: repeat(5,1fr);
    gap: 2.2rem;
    grid-auto-rows: 150px;
+   margin-right: 100px;
 }
 main .insights>div{
    background-color: var(--clr-white);
@@ -309,12 +321,12 @@ main .insights > div:hover{
   box-shadow: none;
 }
 
-main .insights>div  span{
-   background: coral;
+main .insights>div  logo{
+     background: coral;  
     margin-top: 10px;
     margin-left: 10px;
     padding: 3px ;
-     border-radius: 50%;
+      border-radius: 50%; 
      color: var(--clr-white);
      font-size: 3.4rem; 
      /* align-items: center; */
@@ -328,17 +340,26 @@ main .insights>div  span{
 
      
   }
-
-main .insights > div.expenses span{
-   background: var(--clr-danger);
+#totalorder{
+  font-size: 3.1rem;
+  padding: 6px;
+  background: rgb(39, 2, 88);
 }
-main .insights > div.income span{
-  background: var(--clr-success);
+#avgd{
+  font-size: 3.1rem;
+  padding: 6px;
+  background: rgb(1, 170, 134);
+}
+main .insights > div.expenses logo{
+   background: rgb(117, 6, 80);
+}
+main .insights > div.income logo{
+  background:rgb(9, 131, 19);
 }
 
 main .insights > div .title_{
    flex-grow: 1;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-weight: 650;
   padding-top: 10px;
   
@@ -347,6 +368,9 @@ main .insights > div .title_{
   /* grid-row-start: 2;
   grid-row-end: 4;
 } */}
+#titleavg{
+  margin-right: 1rem;
+}
 
 main .insights > div .number_{
 font-size: 3rem;
@@ -354,15 +378,17 @@ text-align: center;
 display: inline;
   grid-column-start: 1;
   grid-column-end: 4;
-font-weight: 450;
-color:#000507
+font-weight: 700;
+color:#080000
 
 }
+
+
 
 main h1{
   color: var(--clr-dark);
 }
-main .insights h1{
+/* main .insights h1{
   color: var(--clr-dark);
 }
 main .insights h3{
@@ -377,7 +403,7 @@ main .insights h3{
     color: var(--clr-dark);
   
   
-}
+} */
 
 /* main .insights .progress{
   position: relative;
@@ -460,34 +486,45 @@ main .container2 .area1 {
   border-radius: var(--card-border-radius);
 
 }
-main .container2 .area2 {
-  background-color: #ffffff;
-  border-radius: var(--card-border-radius);
-  
-}
 
 main .container2 .pie{
   background-color: #ffffff;
   border-radius: var(--card-border-radius);
+  margin-right: 100px;
+  
   
 }
+
+main .container2 .area2 {
+  background-color: #ffffff;
+  border-radius: var(--card-border-radius);
+  
+  
+}
+
+
 
 main .container2 .row{
   background-color: #ffffff;
   border-radius: var(--card-border-radius);
   
+  
 }
 main .container2 .map{
   background-color: #ffffff;
   border-radius: var(--card-border-radius);
-  /* grid-row-end: 2;
+  margin-right: 100px;
+  
+
+  grid-row-end: 2;
   grid-row-start: 2;
   grid-column-start: 2;
-  grid-column-end: 4; */
-}
+  grid-column-end: 4; 
+} 
 main .container2 .pie_product{
   background-color: #ffffff;
   border-radius: var(--card-border-radius);
+  
   
 }
 /* **********
@@ -574,6 +611,7 @@ MEDIA QUERY PHONE
   padding: 40px;
  }
 }
-.dc-chart { font-size: 12px; }
-.dc-grid-top { padding-left: 10px; font-size: 14px; font-weight: bold; }
-.dc-grid-item { padding-left: 10px; font-size: 12px; font-weight: normal; }
+.dc-chart { font-size: 15px;
+}
+.dc-grid-top { padding-left: 50px; font-size: 14px; font-weight: bold; } 
+ .dc-grid-item { padding-left: 100px; font-size: 12px; font-weight: normal; } 
