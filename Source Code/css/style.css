@@ -527,6 +527,12 @@ main .container2 .pie_product{
   
   
 }
+main .container2 .new{
+  background-color: #ffffff;
+  border-radius: var(--card-border-radius);
+  margin-right: 100px;
+  
+}
 /* **********
 MEDIA QUERY
 ****************/
