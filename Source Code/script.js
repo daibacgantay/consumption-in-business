@@ -55,7 +55,7 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
        choro
        .dimension(facilities)
        .group(facilitiesGroup)
-       .width(1182)
+       .width(660)
        .height(300)
        .center([20,-5])
        .renderPopup(true)
