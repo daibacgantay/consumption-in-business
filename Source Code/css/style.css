@@ -513,13 +513,13 @@ main .container2 .row{
 main .container2 .map{
   background-color: #ffffff;
   border-radius: var(--card-border-radius);
-  /* margin-right: 100px;
+  /* margin-right: 100px;*/
   
 
-  grid-row-end: 2;
+  /* grid-row-end: 2;
   grid-row-start: 2;
   grid-column-start: 2;
-  grid-column-end: 4;  */
+  grid-column-end: 4;  */ 
 } 
 main .container2 .pie_product{
   background-color: #ffffff;

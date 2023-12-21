@@ -93,7 +93,7 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
     .stack(Home_Revenue, "Home & Furniture")
     .stack(Fashion_Revenue, "Fashion")
     .renderArea(true)
-    .margins({top: 50, right: 10, bottom: 70, left: 80})
+    .margins({top: 50, right: 10, bottom: 40, left: 80})
     //.elasticY(true)
     .brushOn(true) // Sửa từ false -> true 
     .legend(dc.legend().legendText(function(d) {
