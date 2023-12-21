@@ -32,8 +32,8 @@ var numberDisplay4 = dc.numberDisplay("#marginvalue", groupname);
 var numberDisplay5 = dc.numberDisplay("#Avgday", groupname);
 
 var clusterMap = L.map('cluster-map', {
-  center: [-70,10],
-  zoom: 2
+  center: [-1,1],
+  zoom: 1
 }); 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
