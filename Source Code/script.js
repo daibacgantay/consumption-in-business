@@ -63,7 +63,6 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
         .showMarkerTitle(false)
         .fitOnRender(true)
         .fitOnRedraw(true)
-        .filterByArea(true)
         .popup(d => pos[d.key] + ": "+ changenum(d.value))
         .cluster(true)
         
