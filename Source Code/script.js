@@ -7,6 +7,7 @@ let rowConverter = function (d) {
    Product : d["Product"],
    Revenue : parseFloat(d["Revenue"]),
    Segment: d["Segment"],
+   Country: d["Country"],
    Region: d["Region_country"],
    Profit: parseFloat(d["Profit"]),
    lat: parseFloat(d["latitude"]),
@@ -23,7 +24,7 @@ var Areachart1  = dc.lineChart(".area1", groupname);
 var Areachart2  = dc.lineChart(".area2", groupname);
 var rowChart = dc.rowChart(".row",groupname); // , 'myChartGroup');
 var rowChart2 = dc.rowChart(".row2",groupname); // , 'myChartGroup');
-var pieChart = dc.pieChart(".pie", groupname); //, 'myChartGroup');
+var pieChart = dc.pieChart("#pie", groupname); //, 'myChartGroup');
 var marker = dc_leaflet.markerChart(".map",groupname)
 var numberDisplay1 = dc.numberDisplay("#salenum", groupname);
 var numberDisplay2 = dc.numberDisplay("#profitnum", groupname);
@@ -32,8 +33,8 @@ var numberDisplay4 = dc.numberDisplay("#marginvalue", groupname);
 var numberDisplay5 = dc.numberDisplay("#Avgday", groupname);
 
 var clusterMap = L.map('cluster-map', {
-  center: [-1,1],
-  zoom: 1
+  center: [42.69,25.42],
+  zoom: 18
 }); 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -54,6 +55,7 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
             pos[d.geo] = d.Country;
                                         
         });
+        console.log(pos);
         marker
         .dimension(facilities)
         .group(facilitiesGroup)
@@ -61,10 +63,10 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
         .showMarkerTitle(false)
         .fitOnRender(true)
         .fitOnRedraw(true)
-        .filterByArea(false)
+        .filterByArea(true)
         .popup(d => pos[d.key] + ": "+ changenum(d.value))
         .cluster(true)
-        .render()
+        
 
    //Area chart
    // Area chart1
@@ -84,12 +86,12 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
     .stack(Fashion_Revenue, "Fashion")
     .renderArea(true)
     .margins({top: 50, right: 10, bottom: 40, left: 80})
-    //.elasticY(true)
+    .elasticY(true)
     .brushOn(true) // Sửa từ false -> true 
     .legend(dc.legend().legendText(function(d) {
       return d.name;
   }).itemHeight(13).gap(5).horizontal(true).legendWidth(300).itemWidth(140).x(280).y(10))
-    .ordinalColors(['#3182bd', '#6baed6', '#9ecae1', '#c6dbef'])
+    .ordinalColors(['#573504', '#D14A1F','#205EC9', '#D9B600'])
     .yAxisLabel("Revenue")
     .xAxisLabel("Month")
       .on('renderlet', function(Areachart) {
@@ -116,20 +118,14 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
     .stack(Home_profit, "Home & Furniture")
     .stack(Fashion_profit, "Fashion")
   //   .elasticX(true)
-  //   .elasticY(true)
+     .elasticY(true)
     .renderArea(true)
     .margins({top: 50, right: 10, bottom: 40, left: 80})
     .brushOn(true)
-    .legend(dc.legend().legendText(function(d) {
-      return d.name;
-  }).itemHeight(13).gap(5).horizontal(true).legendWidth(300).itemWidth(140).x(280).y(0))
-    .ordinalColors(['#3182bd', '#6baed6', '#9ecae1', '#c6dbef'])
+    .ordinalColors(['#573504', '#D14A1F','#205EC9', '#D9B600'])
     .yAxisLabel("Profit")
     .xAxisLabel("Month")
-    .on('renderlet', function(Areachart) {
-      Areachart.selectAll('rect').on('click', function(d) {
-      });
-  });
+
      
   // Pie Chart
   
@@ -143,10 +139,11 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
   var total = sumrevenue_S(Data, Data.length);
 
 pieChart
-  .width(450)
-  .height(250)
+  .width(630)
+  .height(330)
   .dimension(categoryDimension)
   .group(valueGroup2)
+  .ordinalColors(['#D9B600', '#205EC9', '#D14A1F', '#573504'])
   .label(d => ((d.value/total)*100).toFixed(1) + "%");
 
  // Row Chart - Customer Segmentation Chart
@@ -159,23 +156,26 @@ var genderGroup = genderDimension.group().reduceSum(function(d) {
 
    
 rowChart
-  .width(650)
-  .height(270)
+  .width(680)
+  .height(300)
   .dimension(genderDimension)
   .group(genderGroup)
-  .ordinalColors(['#3182bd', '#6baed6', '#9ecae1', '#c6dbef'])
+  .margins({top: 30, right: 10, bottom: 40, left:20})
+  .ordinalColors(['#0E5E9C'])
   // .renderLabel(null)
   // .label(d => d.key.split('.')[1])
   .ordering(function(d) { return -d.value; }) // Order by value in descending order
   .cap(3)
-   .on('renderlet', function(chart) {
-   // Add onClick event to the rows
-    chart.selectAll('g.row').on('click', function(d) {
-      // Access the data of the clicked row
-     // Add your custom onClick logic here
-           console.log('Clicked:', d);
-    });
-  });
+  .elasticX(true)
+  .xAxis().ticks(4);
+  //  .on('renderlet', function(chart) {
+  //  // Add onClick event to the rows
+  //   chart.selectAll('g.row').on('click', function(d) {
+  //     // Access the data of the clicked row
+  //    // Add your custom onClick logic here
+  //          console.log('Clicked:', d);
+  //   });
+  // });
  // Row chart - Geographic Analysis 
  var RegionDimension = mycrossfilter.dimension(function(d) { 
   return d.Region; 
@@ -185,15 +185,18 @@ var RegionValue = RegionDimension.group().reduceSum(function(d) {
 });
 
 rowChart2
-  .width(650)
-  .height(270)
+  .width(680)
+  .height(300)
   .dimension(RegionDimension)
   .group(RegionValue)
-  .ordinalColors(['#3182bd', '#6baed6', '#9ecae1', '#c6dbef'])
+  .margins({top: 10, right: 10, bottom: 40, left:20})
+  .ordinalColors(['#0E5E9C'])
   // .renderLabel(null)
   // .label(d => d.key.split('.')[1])
   .ordering(function(d) { return -d.value; }) // Order by value in descending order
-   .cap(4)
+  .cap(7)
+  .elasticX(true)
+  .xAxis().ticks(6);
    
  
 // Number display - Total Revenue
@@ -294,6 +297,7 @@ var button = document.getElementById("reset");
 button.addEventListener("click", function() {
   dc.filterAll(groupname);
   dc.renderAll(groupname);
+  
  });
   //  return {choro: choro, pie: pieChart, pie_product: pieproduct, row: rowChart, area1: Areachart1, area2: Areachart2, number: numberDisplay1, number:numberDisplay2, number:numberDisplay3, number:numberDisplay4, number:numberDisplay5};
    

@@ -19,7 +19,7 @@
   --clr-dark-variant: #677483;
   --clr-color-background: #f6f6f9;
 
-  --card-border-radius: 2rem;
+  --card-border-radius: 1rem;
   --border-radius-1: 0.4rem;
   --border-radius-2: 0.8rem;
   --border-radius-3: 1.2rem;
@@ -83,6 +83,7 @@ h2{
 }
 h3{
   font-size: 0.87;
+  
 }
 h4{
   font-weight: 0.8rem;
@@ -288,10 +289,10 @@ Aesthetics
   margin-bottom: 15px;
 }
 #resetbt{
-  font-size: 3rem;
+  font-size: 2rem;
   color:#000000;
-  height: 60px;
-  width:60px;
+  height: 40px;
+  width:40px;
   background-color: rgb(156, 150, 150);
   padding-top:5px;
 }
@@ -487,16 +488,36 @@ main .container2 .area1 {
 
 }
 
-main .container2 .pie{
+main .container2 #item{
   background-color: #ffffff;
   border-radius: var(--card-border-radius);
   margin-right: 100px;
-  
-  
-  
+  position: relative;
+  border: 1px solid #ccc; 
   
   
 }
+  #pie{
+  position: absolute;
+  bottom: 1px;
+  left: -140px;
+  width: 10px;
+        
+}
+  #Title{
+    position: absolute;
+    top: 25px;
+    right: 120px;
+    width: 200px;
+  }
+  #chugiai{
+    position: absolute;
+    top: 130px;
+    right: 5px;
+    width: 200px;
+
+
+  }
 
 main .container2 .area2 {
   background-color: #ffffff;
@@ -519,7 +540,7 @@ main .container2 .map{
   margin-right: 100px;
   
 
-   grid-row-end: 4;
+  grid-row-end: 4;
   grid-row-start: 2;
   grid-column-start: 2;
   grid-column-end: 4;  
