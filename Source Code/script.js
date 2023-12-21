@@ -93,12 +93,12 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
     .stack(Home_Revenue, "Home & Furniture")
     .stack(Fashion_Revenue, "Fashion")
     .renderArea(true)
-    .margins({top: 50, right: 10, bottom: 60, left: 80})
+    .margins({top: 50, right: 10, bottom: 70, left: 80})
     //.elasticY(true)
     .brushOn(true) // Sửa từ false -> true 
     .legend(dc.legend().legendText(function(d) {
       return d.name;
-  }).itemHeight(13).gap(5).horizontal(true).legendWidth(300).itemWidth(140).x(280).y(10))
+  }).itemHeight(13).gap(5).horizontal(true).legendWidth(300).itemWidth(140).x(280).y(0))
     .ordinalColors(['#3182bd', '#6baed6', '#9ecae1', '#c6dbef'])
     .yAxisLabel("Revenue")
     .xAxisLabel("Month")
@@ -118,7 +118,7 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
    
 
    Areachart2.width(650)
-   .height(280)
+   .height(310)
    .x(d3.scaleLinear().domain([1,12]))
     .dimension(MonthDimension)
     .group(Electronic_profit,"Electronic")
@@ -128,7 +128,7 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
   //   .elasticX(true)
   //   .elasticY(true)
     .renderArea(true)
-    .margins({top: 50, right: 10, bottom: 40, left: 80})
+    .margins({top: 50, right: 10, bottom: 70, left: 80})
     .brushOn(true)
     .legend(dc.legend().legendText(function(d) {
       return d.name;
@@ -136,6 +136,7 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
     .ordinalColors(['#3182bd', '#6baed6', '#9ecae1', '#c6dbef'])
     .yAxisLabel("Profit")
     .xAxisLabel("Month")
+    
     .on('renderlet', function(Areachart) {
       Areachart.selectAll('rect').on('click', function(d) {
       });
