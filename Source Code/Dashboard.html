@@ -8,22 +8,20 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
  
   <link rel="stylesheet" href="css/style.css" />
+  <link type="text/css" href="css/leaflet.css" rel="stylesheet"/>
+  <link type="text/css" href="css/MarkerCluster.Default.css" rel="stylesheet"/>
+  <link type="text/css" href="css/MarkerCluster.css" rel="stylesheet"/>
+  <link type="text/css" href="css/dc.css" rel="stylesheet"/>
+  <link type="text/css" href="css/leaflet-legend.css" rel="stylesheet"/>
 
-
-      <link rel = "stylesheet" type = "text/css" href = "css/dc.css"/>
-      <!-- <link rel = "stylesheet" type = "text/css" href = "css/bootstrap.css"> -->
-      <link type="text/css" href="css/leaflet.css" rel="stylesheet"/>
-      <link type="text/css" href="css/leaflet-legend.css" rel="stylesheet"/>
-
-      <script src = "js/d3.js"></script>
-      <script src = "js/crossfilter.js"></script>
-      <script src = "js/dc.js"></script> 
-      <script src="script.js"></script>
-      <script type="text/javascript" src="js/leaflet.js"></script>
-    <script src="js/colorbrewer.js"></script>
-    <script type="text/javascript" src="js/dc.leaflet.js"></script>
-
-
+  <script type="text/javascript" src="js/d3.js"></script>
+  <script type="text/javascript" src="js/crossfilter.js"></script>
+  <script type="text/javascript" src="js/dc.js"></script>
+  <script type="text/javascript" src="js/leaflet.js"></script>
+  <script src="js/colorbrewer.js"></script>
+  <script type="text/javascript" src="js/leaflet.markercluster.js"></script>
+  <script type="text/javascript" src="js/dc.leaflet.js"></script>
+  <script src="script.js"></script>
 
 </head>
 <body>
@@ -209,7 +207,7 @@
          </div>
 
          <div class="row chart">
-          <strong>Revenue of each product_category </strong>
+          <strong> Customer Segment </strong>
           <!-- <div class="icon">
             <span class="material-symbols-sharp">
               zoom_out_map
@@ -220,7 +218,7 @@
          </div>
 
          <div class="pie chart">
-          <strong> Segment Customer </strong>
+          <strong> Revenue by Product Category </strong>
           
 
         
@@ -256,7 +254,8 @@
           </div> -->
          <!-- </div>  -->
          
-         <div class="map chart">
+         <div class="row2">
+          <strong>Revenue by Region</strong>
           <!-- <div class="icon">
             <span class="material-symbols-sharp">
               zoom_out_map
@@ -265,7 +264,11 @@
             chart
           </div> -->
          </div>
-         <div class="new chart">
+
+          <div class="map" id='cluster-map'></div>
+          <!-- //<div id='cluster-map-anchor'></div> -->
+       
+        
           <!-- <div class="icon">
             <span class="material-symbols-sharp">
               zoom_out_map
@@ -274,6 +277,7 @@
             chart
           </div> -->
          </div>
+         
       </div> 
     
       </main>

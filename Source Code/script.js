@@ -10,71 +10,61 @@ let rowConverter = function (d) {
    Region: d["Region_country"],
    Profit: parseFloat(d["Profit"]),
    lat: parseFloat(d["latitude"]),
-   long: parseFloat(d["longitude"])
-
+   long: parseFloat(d["longitude"]),
+  geo: d["geo"]
 }
 }; 
 
 
 function task(){
 
-var groupname = "Bubbles";
+var groupname = "marker-select";
 var Areachart1  = dc.lineChart(".area1", groupname);
 var Areachart2  = dc.lineChart(".area2", groupname);
 var rowChart = dc.rowChart(".row",groupname); // , 'myChartGroup');
+var rowChart2 = dc.rowChart(".row2",groupname); // , 'myChartGroup');
 var pieChart = dc.pieChart(".pie", groupname); //, 'myChartGroup');
-var choro = dc_leaflet.bubbleChart(".map", groupname);
+var marker = dc_leaflet.markerChart(".map",groupname)
 var numberDisplay1 = dc.numberDisplay("#salenum", groupname);
 var numberDisplay2 = dc.numberDisplay("#profitnum", groupname);
 var numberDisplay3 = dc.numberDisplay("#ordervalue", groupname);
 var numberDisplay4 = dc.numberDisplay("#marginvalue", groupname);
 var numberDisplay5 = dc.numberDisplay("#Avgday", groupname);
 
-d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/main/Data/data_use_forcode.csv", rowConverter)
+var clusterMap = L.map('cluster-map', {
+  center: [-70,10],
+  zoom: 2
+}); 
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(clusterMap);
+
+d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/main/Data/data_use_for_webcode.csv", rowConverter)
  .then(function(Data) {
    var mycrossfilter = crossfilter(Data);
 
-   //Map chart 
-  dataP = [];
-       var pos = {};
-       Data.forEach(function(d) {
-           pos[d.Region] = [d.lat, d.long];
-                                       
-       });
-       console.log(pos); 
-       for(var i = 0; i < Data.length; i++) {
-           dataP.push({'Region':Data[i].Region,'value':Data[i].Revenue});
+   // marker map chart 
 
-       }
-       console.log(dataP);
-
-       
-       var facilities = mycrossfilter.dimension(function(d) { return d.Region; });
-       facilitiesGroup = facilities.group().reduceSum(function(d) { return d.Revenue;});
-
-       choro
-       .dimension(facilities)
-       .group(facilitiesGroup)
-       .width(660)
-       .height(300)
-       .center([20,-5])
-       .renderPopup(true)
-       .margins({top: 20, right: 0, bottom: 0, left: 0})
-       
-       .colors(colorbrewer.Reds[5])
-       .colorDomain([
-           d3.min(facilitiesGroup.all(), dc.pluck('value')),
-           d3.max(facilitiesGroup.all(), dc.pluck('value'))
-       ])
-       .colorAccessor(function(d,i) {
-          
-           return d.value;
-       })
-       .popup(d => d.key)
-       .zoom(1)
-       .locationAccessor(d => pos[d.key])
-       .r(d3.scaleLog().domain([1, 100000000000]).range([0,20]))
-       .legend(dc_leaflet.legend().position('bottomleft').legendTitle("Bubble"));
+        var facilities = mycrossfilter.dimension(function(d) { return d["geo"]; });
+        var facilitiesGroup = facilities.group().reduceSum(function(d) {
+            return d.Revenue;
+          })
+          var pos = {};
+          Data.forEach(function(d) {
+            pos[d.geo] = d.Country;
+                                        
+        });
+        marker
+        .dimension(facilities)
+        .group(facilitiesGroup)
+        .map(clusterMap)
+        .showMarkerTitle(false)
+        .fitOnRender(true)
+        .fitOnRedraw(true)
+        .filterByArea(false)
+        .popup(d => pos[d.key] + ": "+ changenum(d.value))
+        .cluster(true)
+        .render()
 
    //Area chart
    // Area chart1
@@ -142,47 +132,42 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
   });
      
   // Pie Chart
-  var genderDimension = mycrossfilter.dimension(function(Data) { 
-     return Data.Segment; 
-  });
-  var genderGroup = genderDimension.group().reduceCount();
-
-  
-pieChart
-  .width(450)
-  .height(250)
-  .dimension(genderDimension)
-  .group(genderGroup)
-  
-  
-  
-  
-  
-  
-  //  .on('renderlet', function(chart) {
-  //     // Add onClick event to the pie slices
-  //     chart.selectAll('path').on('click', function(d) {
-  //     });
-  //   });
   
 
   var categoryDimension = mycrossfilter.dimension(function(d) {
-     return d.Product_Category;
-   });
-  var valueGroup2 = categoryDimension.group().reduceSum(function(d) {
-     return d.Revenue;
-   })
+    return d.Product_Category;
+  });
+ var valueGroup2 = categoryDimension.group().reduceSum(function(d) {
+    return d.Revenue;
+  })
+  var total = sumrevenue_S(Data, Data.length);
+
+pieChart
+  .width(450)
+  .height(250)
+  .dimension(categoryDimension)
+  .group(valueGroup2)
+  .label(d => ((d.value/total)*100).toFixed(1) + "%");
+
+ // Row Chart - Customer Segmentation Chart
+ var genderDimension = mycrossfilter.dimension(function(Data) { 
+  return Data.Segment; 
+});
+var genderGroup = genderDimension.group().reduceSum(function(d) {
+  return d.Revenue;
+});
 
    
 rowChart
   .width(650)
   .height(270)
-  .dimension(categoryDimension)
-  .group(valueGroup2)
+  .dimension(genderDimension)
+  .group(genderGroup)
   .ordinalColors(['#3182bd', '#6baed6', '#9ecae1', '#c6dbef'])
-  .renderLabel(null)
+  // .renderLabel(null)
+  // .label(d => d.key.split('.')[1])
   .ordering(function(d) { return -d.value; }) // Order by value in descending order
-  .cap(4)
+  .cap(3)
    .on('renderlet', function(chart) {
    // Add onClick event to the rows
     chart.selectAll('g.row').on('click', function(d) {
@@ -191,6 +176,25 @@ rowChart
            console.log('Clicked:', d);
     });
   });
+ // Row chart - Geographic Analysis 
+ var RegionDimension = mycrossfilter.dimension(function(d) { 
+  return d.Region; 
+});
+var RegionValue = RegionDimension.group().reduceSum(function(d) {
+  return d.Revenue;
+});
+
+rowChart2
+  .width(650)
+  .height(270)
+  .dimension(RegionDimension)
+  .group(RegionValue)
+  .ordinalColors(['#3182bd', '#6baed6', '#9ecae1', '#c6dbef'])
+  // .renderLabel(null)
+  // .label(d => d.key.split('.')[1])
+  .ordering(function(d) { return -d.value; }) // Order by value in descending order
+   .cap(4)
+   
  
 // Number display - Total Revenue
 
@@ -307,6 +311,16 @@ function changenum(number){
   var USformat = new Intl.NumberFormat("en-US",options);
   var USformatnumer = USformat.format(number);
   return USformatnumer;
+}
+function sumrevenue_S(Data, n){
+  var count = 0;
+  for(var i =0; i<n; i++){
+        var revenue = Data[i].Revenue;
+        count= count+revenue;     
+     
+  }
+  total = Math.round(count);
+  return total;     
 }
 
 
