@@ -84,12 +84,12 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
     .stack(Home_Revenue, "Home & Furniture")
     .stack(Fashion_Revenue, "Fashion")
     .renderArea(true)
-    .margins({top: 50, right: 10, bottom: 40, left: 80})
+    .margins({top: 50, right: 10, bottom: 30, left: 80})
     .elasticY(true)
     .brushOn(true) // Sửa từ false -> true 
-    .legend(dc.legend().legendText(function(d) {
+    .legend(dc.legend().legendText(function(d) { //Xoa
       return d.name;
-  }).itemHeight(13).gap(5).horizontal(true).legendWidth(300).itemWidth(140).x(280).y(10))
+  }).itemHeight(13).gap(5).horizontal(true).legendWidth(300).itemWidth(140).x(280).y(10))//Xoa
     .ordinalColors(['#573504', '#D14A1F','#205EC9', '#D9B600'])
     .yAxisLabel("Revenue")
     .xAxisLabel("Month")
@@ -119,7 +119,7 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
   //   .elasticX(true)
      .elasticY(true)
     .renderArea(true)
-    .margins({top: 50, right: 10, bottom: 40, left: 80})
+    .margins({top: 50, right: 10, bottom: 30, left: 80})
     .brushOn(true)
     .ordinalColors(['#573504', '#D14A1F','#205EC9', '#D9B600'])
     .yAxisLabel("Profit")
