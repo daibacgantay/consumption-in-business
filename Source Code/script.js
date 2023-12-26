@@ -87,9 +87,7 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
     .margins({top: 50, right: 10, bottom: 30, left: 80})
     .elasticY(true)
     .brushOn(true) // Sửa từ false -> true 
-    .legend(dc.legend().legendText(function(d) { //Xoa
-      return d.name;
-  }).itemHeight(13).gap(5).horizontal(true).legendWidth(300).itemWidth(140).x(280).y(10))//Xoa
+  
     .ordinalColors(['#573504', '#D14A1F','#205EC9', '#D9B600'])
     .yAxisLabel("Revenue")
     .xAxisLabel("Month")

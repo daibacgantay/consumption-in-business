@@ -157,7 +157,7 @@ b{
  ================== */
 
   aside .sidebar{
-    background-image: linear-gradient(to bottom right, rgb(167, 162, 250), rgb(190, 184, 243));
+    background-image: linear-gradient(to bottom right, rgb(105, 98, 235), rgb(23, 9, 151));
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -226,7 +226,7 @@ b{
   text-align: center;
   
   font-weight: 500;
-  background-image: linear-gradient(to bottom right, rgb(92, 81, 250), rgb(49, 27, 247));
+  background-image: linear-gradient(to bottom right, rgb(92, 81, 250), rgb(103, 11, 250));
   width: 500px;
   margin: auto;
   height: 100px;
