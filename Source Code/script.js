@@ -142,8 +142,10 @@ pieChart
   .height(330)
   .dimension(categoryDimension)
   .group(valueGroup2)
+  .legend(dc.legend().x(500).y(100).gap(5))
   .ordinalColors(['#D9B600', '#205EC9', '#D14A1F', '#573504'])
-  .label(d => ((d.value/total)*100).toFixed(1) + "%");
+  .label(d => ((d.value/total)*100).toFixed(1) + "%")
+  
 
  // Row Chart - Customer Segmentation Chart
  var genderDimension = mycrossfilter.dimension(function(Data) { 

@@ -13,6 +13,7 @@
   <link type="text/css" href="css/MarkerCluster.css" rel="stylesheet"/>
   <link type="text/css" href="css/dc.css" rel="stylesheet"/>
   <link type="text/css" href="css/leaflet-legend.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <script type="text/javascript" src="js/d3.js"></script>
   <script type="text/javascript" src="js/crossfilter.js"></script>
@@ -50,25 +51,14 @@
               <span class="material-symbols-sharp">person_outline </span>
               <h3>About us</h3>
            </a>
-           <a href="home.html">
-              <span class="material-symbols-sharp">insights </span>
-              <h3>Analytics</h3>
-           </a>
-           <a href="#">
-              <span class="material-symbols-sharp">mail_outline </span>
-              <h3>Messages</h3>
-           </a>
-           <a href="#">
-              <span class="material-symbols-sharp">receipt_long </span>
-              <h3>Products</h3>
-           </a>
+
            <a href="#">
               <span class="material-symbols-sharp">report_gmailerrorred </span>
               <h3>Reports</h3>
            </a>
            <a href="#">
-              <span class="material-symbols-sharp">settings </span>
-              <h3>settings</h3>
+            <span class="fa fa-github"></span>
+              <h3>Github</h3>
            </a>
            </a>
            <a href="#">
@@ -90,22 +80,12 @@
       --------------- -->
 
       <main>
-           <h1>Dashboard</h1>
+        <div id="tieude">
+          <h1>Dashboard </h1>
+        </div>        
+           
 
-          <div class="custom-select">
-            <button id= "reset">  <logo class="material-symbols-sharp"id="resetbt">
-              refresh
-            </logo></button> 
-            <!-- <select>
-              <option value="">All</option>
-              <option value="">1</option>
-              <option value="">2</option>
-              <option value="">3</option>
-              <option value="">4</option>
-              
-            </select> -->
-            
-          </div>
+          
 
         <div class="insights" >
 
@@ -220,19 +200,23 @@
          <div id="item">
 
           <!-- <strong> Revenue by Product Category </strong> -->
-          <div id = "Title">
-            <h2>Title</h2>
+          <div class="custom-select">
+            <button id= "reset">  <logo class="material-symbols-sharp"id="resetbt">
+              refresh
+            </logo></button> 
+            
+            
           </div>
           <div id="pie"></div>
 
-          <div id="chugiai">
+          <!-- <div id="chugiai">
             
             <h3> Fashion </h3>
             <h3> Auto & Accessories </h3>
             <h3> Home & Furniture </h3>
             <h3> Electronic </h3>
 
-          </div>
+          </div> -->
 
         
           <!-- <div class="icon">

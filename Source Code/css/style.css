@@ -76,7 +76,7 @@ a{
 
 h1{
   font-weight: 800;
-  font-size: 2.8rem;
+  font-size: 3.9rem;
 }
 h2{
   font-size: 1.4rem;
@@ -131,16 +131,17 @@ b{
   height: 100vh;
  }
  aside .top{
-  background: var(--clr-white);
+  background:#808fff;
   display: flex;
-  align-items: center;
   justify-content: space-between;
   margin-top: 1.4rem;
+  text-align: center;
  }
 
  aside .logo{
    display: flex;
    gap: 1rem;
+   
  }
  aside .logo img{
    width: 2rem;
@@ -155,12 +156,13 @@ b{
  ================== */
 
   aside .sidebar{
-  background: var(--clr-white);
+  background:#808fff;
   display: flex;
   flex-direction: column;
   height: 100vh;
   position: relative;
   top: 1rem;
+  
  }
 
  aside h3{
@@ -169,7 +171,7 @@ b{
 
  aside .sidebar a{
   display: flex;
-  color: var(--clr-info-dark);
+  color:#000;
   margin-left: 2rem;
   gap: 1rem;
   align-items: center;
@@ -192,7 +194,7 @@ b{
 
  aside .sidebar a.active{
    background-color: var(--clr-light);
-   color: var(--clr-primary);
+   color:#000000;
    margin-left: 0;
    border-left: 5px solid var(--clr-primary);
    margin-left: calc(1rem - 3px);
@@ -218,6 +220,18 @@ b{
   border: 0;
   outline: 0;
   color: var(--clr-dark);
+ }
+ #tieude{
+  text-align: center;
+  
+  font-weight: 500;
+  background-color: #7380ec;
+  width: 500px;
+  margin: auto;
+  height: 100px;
+  border: 5px outset rgb(12, 15, 241);
+  border-radius: 25px;
+  margin-bottom: 65px;
  }
 
  /* main .date{
@@ -286,7 +300,11 @@ Aesthetics
   place-items: center;
 } */
 #reset{
-  margin-bottom: 15px;
+  position: absolute; 
+top: 0px;
+right: 0px;
+margin-right: 7px;
+margin-top:7px;
 }
 #resetbt{
   font-size: 2rem;
