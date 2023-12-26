@@ -76,7 +76,8 @@ a{
 
 h1{
   font-weight: 800;
-  font-size: 3.9rem;
+  font-size: 4rem;
+  color:#000000
 }
 h2{
   font-size: 1.4rem;
@@ -156,7 +157,7 @@ b{
  ================== */
 
   aside .sidebar{
-  background:#808fff;
+    background-image: linear-gradient(to bottom right, rgb(167, 162, 250), rgb(190, 184, 243));
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -225,7 +226,7 @@ b{
   text-align: center;
   
   font-weight: 500;
-  background-color: #7380ec;
+  background-image: linear-gradient(to bottom right, rgb(92, 81, 250), rgb(49, 27, 247));
   width: 500px;
   margin: auto;
   height: 100px;
@@ -322,7 +323,7 @@ main .insights{
    margin-right: 100px;
 }
 main .insights>div{
-   background-color: var(--clr-white);
+  background-image: linear-gradient(to bottom right, rgb(236, 235, 253), rgb(255, 255, 255));
    /* padding: var(--card-padding); */
    border-radius: var(--card-border-radius);
    /* margin-top: 1rem; */
@@ -488,7 +489,7 @@ main .container2{
 
 }
 main .container2>div{
-  background-color: var(--clr-white);
+  background-image: linear-gradient(to bottom right, rgb(255, 255, 255), rgb(235, 233, 255));
   padding: var(--card-padding);
   border-radius: var(--card-border-radius);
   box-shadow: var(--box-shadow);
