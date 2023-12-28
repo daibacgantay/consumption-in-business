@@ -429,3 +429,8 @@ function sumrevenue_S(Data, n){
 }
 
 
+//zoom
+document.querySelector('#zoomarea1').onclick = ()=>{
+  document.querySelector('.popupchart').style.display='block';
+
+}

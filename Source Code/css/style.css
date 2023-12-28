@@ -301,7 +301,7 @@ Aesthetics
   place-items: center;
 } */
 #reset{
-  position: absolute; 
+position: absolute; 
 top: 0px;
 right: 0px;
 margin-right: 7px;
@@ -315,6 +315,23 @@ margin-top:7px;
   background-color: rgb(156, 150, 150);
   padding-top:5px;
 }
+main .container2>div>button{
+  position: absolute; 
+  top: 0px;
+  right: 0px;
+  margin-right: 15px;
+  margin-top:15px;
+
+}
+#zoombt{
+  font-size: 2rem;
+  color:#000000;
+  height: 40px;
+  width:40px;
+  
+  /* padding-top:5px; */
+}
+
 main .insights{
    display: grid;
    grid-template-columns: repeat(5,1fr);
@@ -494,6 +511,7 @@ main .container2>div{
   border-radius: var(--card-border-radius);
   box-shadow: var(--box-shadow);
   transition: all .4s ease;
+  position: relative;
 }
 /* .chart {
   background-color: #dddddd;
@@ -543,6 +561,7 @@ main .container2 .area2 {
   border-radius: var(--card-border-radius);
   
   
+  
 }
 
 
@@ -562,7 +581,8 @@ main .container2 .map{
   grid-row-end: 4;
   grid-row-start: 2;
   grid-column-start: 2;
-  grid-column-end: 4;  
+  grid-column-end: 4;
+  
 } 
 /* main .container2 .pie_product{
   background-color: #ffffff;
@@ -575,6 +595,32 @@ main .container2 .row2{
   border-radius: var(--card-border-radius);
   /* margin-right: 100px; */
   
+}
+ .popupchart{
+  position: fixed;
+  top:0; left:0;
+  background:#e5e6e7;
+  height:100%;
+  width: 100%;
+  z-index:100;
+  display:none;
+}
+.popupchart  >logo{
+  position:absolute;
+  top:0; right:10px;
+  font-size: 40px;
+  font-weight:bolder;
+  color:#000;
+  cursor:pointer;
+  z-index: 100;
+}
+.popupchart>div{
+  position:absolute;
+  top:50%; left:50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  width:750px;
+  object-fit:cover;
 }
 /* **********
 MEDIA QUERY
