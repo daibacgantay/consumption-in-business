@@ -32,6 +32,13 @@ var numberDisplay3 = dc.numberDisplay("#ordervalue", groupname);
 var numberDisplay4 = dc.numberDisplay("#marginvalue", groupname);
 var numberDisplay5 = dc.numberDisplay("#Avgday", groupname);
 
+var Areachart1copy  = dc.lineChart(".coppyarea1", groupname);
+var Areachart2copy  = dc.lineChart(".coppyarea2", groupname);
+var rowChartcoppy = dc.rowChart(".coppyrow",groupname);
+var rowChart2coppy = dc.rowChart(".coppyrow2",groupname);
+var pieChartcoppy = dc.pieChart("#coppypie", groupname);
+var markercoppy = dc_leaflet.markerChart(".mmap",groupname)
+
 var clusterMap = L.map('cluster-map', {
   center: [42.69,25.42],
   zoom: 18
@@ -39,6 +46,15 @@ var clusterMap = L.map('cluster-map', {
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(clusterMap);
+
+
+      var clusterMapcoppy = L.map('clluster-map', {
+        center: [42.69,25.42],
+        zoom: 3
+      }); 
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(clusterMapcoppy);
 
 d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/main/Data/data_use_for_webcode.csv", rowConverter)
  .then(function(Data) {
@@ -65,6 +81,17 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
         .fitOnRedraw(true)
         .popup(d => pos[d.key] + ": "+ changenum(d.value))
         .cluster(true)
+
+
+        markercoppy
+        .dimension(facilities)
+  .group(facilitiesGroup)
+  .map(clusterMapcoppy)
+  .showMarkerTitle(false)
+  .fitOnRender(true)
+  .fitOnRedraw(true)
+  .popup(d => pos[d.key] + ": "+ changenum(d.value))
+  .cluster(true)
         
 
    //Area chart
@@ -97,6 +124,30 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
      });
 
 
+
+     Areachart1copy.width(650)
+     .height(280)
+     .x(d3.scaleLinear().domain([1,12]))
+      .dimension(MonthDimension)
+      .group(Electronic_Revenue,"Electronic")
+      .stack(Auto_Revenue, "Auto & Accessories")
+      .stack(Home_Revenue, "Home & Furniture")
+      .stack(Fashion_Revenue, "Fashion")
+      .renderArea(true)
+      .margins({top: 50, right: 10, bottom: 30, left: 80})
+      .elasticY(true)
+      .brushOn(true) // Sửa từ false -> true 
+    
+      .ordinalColors(['#573504', '#D14A1F','#205EC9', '#D9B600'])
+      .yAxisLabel("Revenue")
+      .xAxisLabel("Month")
+        .on('renderlet', function(Areachart) {
+           Areachart.selectAll('rect').on('click', function(d) {
+           });
+       });
+  
+
+
 // Area Chart 2
 
   var Electronic_profit=MonthDimension.group().reduceSum(function(d) {if (d.Product_Category === "Electronic") {return d.Revenue;}else{return 0;}});
@@ -123,7 +174,23 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
     .yAxisLabel("Profit")
     .xAxisLabel("Month")
 
-     
+    Areachart2copy.width(650)
+    .height(280)
+    .x(d3.scaleLinear().domain([1,12]))
+     .dimension(MonthDimension)
+     .group(Electronic_profit,"Electronic")
+     .stack(Auto_profit, "Auto & Accessories")
+     .stack(Home_profit, "Home & Furniture")
+     .stack(Fashion_profit, "Fashion")
+   //   .elasticX(true)
+      .elasticY(true)
+     .renderArea(true)
+     .margins({top: 50, right: 10, bottom: 30, left: 80})
+     .brushOn(true)
+     .ordinalColors(['#573504', '#D14A1F','#205EC9', '#D9B600'])
+     .yAxisLabel("Profit")
+     .xAxisLabel("Month")
+
   // Pie Chart
   
 
@@ -144,6 +211,16 @@ pieChart
   .ordinalColors(['#D9B600', '#205EC9', '#D14A1F', '#573504'])
   .label(d => ((d.value/total)*100).toFixed(1) + "%")
   
+
+  pieChartcoppy
+  .width(630)
+  .height(330)
+  .dimension(categoryDimension)
+  .group(valueGroup2)
+  .legend(dc.legend().x(500).y(100).gap(5))
+  .ordinalColors(['#D9B600', '#205EC9', '#D14A1F', '#573504'])
+  .label(d => ((d.value/total)*100).toFixed(1) + "%")
+
 
  // Row Chart - Customer Segmentation Chart
  var genderDimension = mycrossfilter.dimension(function(Data) { 
@@ -175,6 +252,20 @@ rowChart
   //          console.log('Clicked:', d);
   //   });
   // });
+
+
+  rowChartcoppy
+  .width(680)
+  .height(300)
+  .dimension(genderDimension)
+  .group(genderGroup)
+  .margins({top: 30, right: 10, bottom: 40, left:20})
+  .ordinalColors(['#0E5E9C'])
+  .ordering(function(d) { return -d.value; }) // Order by value in descending order
+  .cap(3)
+  .elasticX(true)
+  .xAxis().ticks(4);
+
  // Row chart - Geographic Analysis 
  var RegionDimension = mycrossfilter.dimension(function(d) { 
   return d.Region; 
@@ -197,6 +288,17 @@ rowChart2
   .elasticX(true)
   .xAxis().ticks(6);
    
+  rowChart2coppy
+  .width(680)
+  .height(300)
+  .dimension(RegionDimension)
+  .group(RegionValue)
+  .margins({top: 10, right: 10, bottom: 40, left:20})
+  .ordinalColors(['#0E5E9C'])
+  .ordering(function(d) { return -d.value; }) // Order by value in descending order
+  .cap(7)
+  .elasticX(true)
+  .xAxis().ticks(6);
  
 // Number display - Total Revenue
 
