@@ -19,7 +19,7 @@
   --clr-dark-variant: #677483;
   --clr-color-background: #f6f6f9;
 
-  --card-border-radius: 2rem;
+  --card-border-radius: 1rem;
   --border-radius-1: 0.4rem;
   --border-radius-2: 0.8rem;
   --border-radius-3: 1.2rem;
@@ -76,13 +76,15 @@ a{
 
 h1{
   font-weight: 800;
-  font-size: 2.8rem;
+  font-size: 4rem;
+  color:#000000
 }
 h2{
   font-size: 1.4rem;
 }
 h3{
   font-size: 0.87;
+  
 }
 h4{
   font-weight: 0.8rem;
@@ -130,16 +132,17 @@ b{
   height: 100vh;
  }
  aside .top{
-  background: var(--clr-white);
+  background:#808fff;
   display: flex;
-  align-items: center;
   justify-content: space-between;
   margin-top: 1.4rem;
+  text-align: center;
  }
 
  aside .logo{
    display: flex;
    gap: 1rem;
+   
  }
  aside .logo img{
    width: 2rem;
@@ -154,12 +157,13 @@ b{
  ================== */
 
   aside .sidebar{
-  background: var(--clr-white);
+    background-image: linear-gradient(to bottom right, rgb(105, 98, 235), rgb(23, 9, 151));
   display: flex;
   flex-direction: column;
   height: 100vh;
   position: relative;
   top: 1rem;
+  
  }
 
  aside h3{
@@ -168,7 +172,7 @@ b{
 
  aside .sidebar a{
   display: flex;
-  color: var(--clr-info-dark);
+  color:#000;
   margin-left: 2rem;
   gap: 1rem;
   align-items: center;
@@ -191,7 +195,7 @@ b{
 
  aside .sidebar a.active{
    background-color: var(--clr-light);
-   color: var(--clr-primary);
+   color:#000000;
    margin-left: 0;
    border-left: 5px solid var(--clr-primary);
    margin-left: calc(1rem - 3px);
@@ -217,6 +221,18 @@ b{
   border: 0;
   outline: 0;
   color: var(--clr-dark);
+ }
+ #tieude{
+  text-align: center;
+  
+  font-weight: 500;
+  background-image: linear-gradient(to bottom right, rgb(92, 81, 250), rgb(103, 11, 250));
+  width: 500px;
+  margin: auto;
+  height: 100px;
+  border: 5px outset rgb(12, 15, 241);
+  border-radius: 25px;
+  margin-bottom: 65px;
  }
 
  /* main .date{
@@ -285,16 +301,37 @@ Aesthetics
   place-items: center;
 } */
 #reset{
-  margin-bottom: 15px;
+position: absolute; 
+top: 0px;
+right: 0px;
+margin-right: 7px;
+margin-top:7px;
 }
 #resetbt{
-  font-size: 3rem;
+  font-size: 2rem;
   color:#000000;
-  height: 60px;
-  width:60px;
+  height: 40px;
+  width:40px;
   background-color: rgb(156, 150, 150);
   padding-top:5px;
 }
+main .container2>div>button{
+  position: absolute; 
+  top: 0px;
+  right: 0px;
+  margin-right: 15px;
+  margin-top:15px;
+
+}
+#zoombt{
+  font-size: 2rem;
+  color:#000000;
+  height: 40px;
+  width:40px;
+  
+  /* padding-top:5px; */
+}
+
 main .insights{
    display: grid;
    grid-template-columns: repeat(5,1fr);
@@ -303,7 +340,7 @@ main .insights{
    margin-right: 100px;
 }
 main .insights>div{
-   background-color: var(--clr-white);
+  background-image: linear-gradient(to bottom right, rgb(236, 235, 253), rgb(255, 255, 255));
    /* padding: var(--card-padding); */
    border-radius: var(--card-border-radius);
    /* margin-top: 1rem; */
@@ -459,7 +496,7 @@ main .container2{
    display:grid;
    grid-template-columns: repeat(3,1fr);
    gap: 0.7rem;
-   grid-auto-rows: 330px;
+   grid-auto-rows: 350px;
 
    
    
@@ -469,11 +506,12 @@ main .container2{
 
 }
 main .container2>div{
-  background-color: var(--clr-white);
+  background-image: linear-gradient(to bottom right, rgb(255, 255, 255), rgb(235, 233, 255));
   padding: var(--card-padding);
   border-radius: var(--card-border-radius);
   box-shadow: var(--box-shadow);
   transition: all .4s ease;
+  position: relative;
 }
 /* .chart {
   background-color: #dddddd;
@@ -487,17 +525,41 @@ main .container2 .area1 {
 
 }
 
-main .container2 .pie{
+main .container2 #item{
   background-color: #ffffff;
   border-radius: var(--card-border-radius);
   margin-right: 100px;
+  position: relative;
+  border: 1px solid #ccc; 
   
   
 }
+  #pie{
+  position: absolute;
+  bottom: 1px;
+  left: -140px;
+  width: 10px;
+        
+}
+  #Title{
+    position: absolute;
+    top: 25px;
+    right: 120px;
+    width: 200px;
+  }
+  #chugiai{
+    position: absolute;
+    top: 130px;
+    right: 5px;
+    width: 200px;
+
+
+  }
 
 main .container2 .area2 {
   background-color: #ffffff;
   border-radius: var(--card-border-radius);
+  
   
   
 }
@@ -513,19 +575,52 @@ main .container2 .row{
 main .container2 .map{
   background-color: #ffffff;
   border-radius: var(--card-border-radius);
-  margin-right: 100px;
+  margin-right: 150px;
   
 
-  grid-row-end: 2;
+  grid-row-end: 4;
   grid-row-start: 2;
   grid-column-start: 2;
-  grid-column-end: 4; 
+  grid-column-end: 4;
+  
 } 
-main .container2 .pie_product{
+/* main .container2 .pie_product{
   background-color: #ffffff;
   border-radius: var(--card-border-radius);
   
   
+} */
+main .container2 .row2{
+  background-color: #ffffff;
+  border-radius: var(--card-border-radius);
+  /* margin-right: 100px; */
+  
+}
+ .popupchart{
+  position: fixed;
+  top:0; left:0;
+  background:#e5e6e7;
+  height:100%;
+  width: 100%;
+  z-index:100;
+  display:none;
+}
+.popupchart  >logo{
+  position:absolute;
+  top:0; right:10px;
+  font-size: 40px;
+  font-weight:bolder;
+  color:#000;
+  cursor:pointer;
+  z-index: 100;
+}
+.popupchart>div{
+  position:absolute;
+  top:50%; left:50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  width:750px;
+  object-fit:cover;
 }
 /* **********
 MEDIA QUERY
