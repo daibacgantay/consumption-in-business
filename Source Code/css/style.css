@@ -66,7 +66,7 @@ body{
   display: grid;
   width: 96%;
   gap: 1.5rem;
-  grid-template-columns: 14rem auto 16rem;
+  grid-template-columns: 19rem auto 10rem;
   margin: 0 auto;
 }
 
@@ -83,7 +83,7 @@ h2{
   font-size: 1.4rem;
 }
 h3{
-  font-size: 0.87;
+  font-size: 2.2rem;
   
 }
 h4{
@@ -95,15 +95,8 @@ h5{
 small{
   font-size: 0.75rem;
 }
-.profile-photo img{
-  width: 2.8rem;
-  height: 2.8rem;
-  overflow: hidden;
-  border-radius: 50%;
-}
-.text-muted{
-  color: var(--clr-info-dark);
-}
+
+
 p{
   color: var(--clr-dark-variant);
 }
@@ -130,6 +123,7 @@ b{
 /* aside */
   aside{
   height: 100vh;
+  
  }
  aside .top{
   background:#808fff;
@@ -137,6 +131,7 @@ b{
   justify-content: space-between;
   margin-top: 1.4rem;
   text-align: center;
+  
  }
 
  aside .logo{
@@ -149,7 +144,7 @@ b{
    height: 2rem;
  }
  aside .top div.close span{
-   display: none;
+   display: block;
  }
 
  /* ===================
@@ -160,9 +155,10 @@ b{
     background-image: linear-gradient(to bottom right, rgb(105, 98, 235), rgb(23, 9, 151));
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 120vh;
   position: relative;
   top: 1rem;
+gap: 20px;
   
  }
 
@@ -173,7 +169,7 @@ b{
  aside .sidebar a{
   display: flex;
   color:#000;
-  margin-left: 2rem;
+  margin-left: 1rem;
   gap: 1rem;
   align-items: center;
   height: 3.3rem;
@@ -182,8 +178,10 @@ b{
  }
 
  aside .sidebar a span{
-  font-size: 1.6rem;
+  font-size: 2.7rem;
   transition: all .3s ease-in-out;
+  margin-left: 0;
+  
   
  }
 
@@ -198,7 +196,7 @@ b{
    color:#000000;
    margin-left: 0;
    border-left: 5px solid var(--clr-primary);
-   margin-left: calc(1rem - 3px);
+   margin-left: calc(0.5rem - 3px);
  }
  aside .sidebar a:hover span{
   margin-left: 1rem;
