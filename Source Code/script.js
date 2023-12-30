@@ -400,8 +400,8 @@ button.addEventListener("click", function() {
   dc.renderAll(groupname);
   
  });
+
   //  return {choro: choro, pie: pieChart, pie_product: pieproduct, row: rowChart, area1: Areachart1, area2: Areachart2, number: numberDisplay1, number:numberDisplay2, number:numberDisplay3, number:numberDisplay4, number:numberDisplay5};
-   
 })
 .catch(function(error) {
    // Handle any errors that might occur during loading
