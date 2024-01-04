@@ -535,7 +535,7 @@ main .container2 #item{
   #pie{
   position: absolute;
   bottom: 1px;
-  left: -140px;
+  left: -40px;
   width: 10px;
         
 }
@@ -545,15 +545,7 @@ main .container2 #item{
     right: 120px;
     width: 200px;
   }
-  #chugiai{
-    position: absolute;
-    top: 130px;
-    right: 5px;
-    width: 200px;
-
-
-  }
-
+  
 main .container2 .area2 {
   background-color: #ffffff;
   border-radius: var(--card-border-radius);
@@ -574,6 +566,7 @@ main .container2 .map{
   background-color: #ffffff;
   border-radius: var(--card-border-radius);
   margin-right: 150px;
+ display: block;
   
 
   grid-row-end: 4;
@@ -597,29 +590,57 @@ main .container2 .row2{
  .popupchart{
   position: fixed;
   top:0; left:0;
-  background:#e5e6e7;
+  background:#dddddd;
   height:100%;
   width: 100%;
   z-index:100;
   display:none;
+  
 }
 .popupchart  >logo{
   position:absolute;
   top:0; right:10px;
-  font-size: 40px;
+  font-size: 80px;
   font-weight:bolder;
   color:#000;
   cursor:pointer;
   z-index: 100;
 }
-.popupchart>div{
+.popupchart >div{
   position:absolute;
-  top:50%; left:50%;
-  transform: translate(-50%, -50%);
-  border-radius: 5px;
-  width:750px;
-  object-fit:cover;
+  top:40%; left:42%;
+ transform: scale(2.3);
+ display: none ;
+  
+  
 }
+.popupchart .coppyarea1{
+  display: none
+
+}
+.popupchart .coppyarea2{
+  display: none
+
+}
+.popupchart #coppypie{
+  display: none
+
+}
+.popupchart .coppyrow{
+  display: none
+
+}
+.popupchart .coppyrow2{
+  display: none
+
+}
+.popupchart .mmap{
+  display: none
+
+}
+
+
+
 /* **********
 MEDIA QUERY
 ****************/
