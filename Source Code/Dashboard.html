@@ -52,8 +52,8 @@
               <h3>About us</h3>
            </a>
 
-           <a href="#">
-              <span class="material-symbols-sharp">report_gmailerrorred </span>
+           <a href="https://mphcmiuedu-my.sharepoint.com/:w:/g/personal/itdsiu21073_student_hcmiu_edu_vn/EdaOAR064PhNq6gcDbtC1OEB5qRVFt44kG5BWW44_cn-JQ?rtime=9OqZYOcM3Eg"target="_blank">
+              <span class="material-symbols-sharp">description </span>
               <h3>Reports</h3>
            </a>
            <a href="https://github.com/daibacgantay/consumption-in-business"target="_blank">
@@ -84,9 +84,7 @@
           <h1>Dashboard </h1>
         </div>        
            
-        <button id= "reset2">  <logo class="material-symbols-sharp"id="resetbt">
-          refresh
-        </logo></button> 
+         
           
 
         <div class="insights" >
@@ -177,10 +175,11 @@
          </div>
 
          <div class="area2 chart">
+          <strong>Profit by Month</strong>
           <button id= "zoomarea2">  <logo class="material-symbols-sharp"id="zoombt">
             zoom_out_map
           </logo></button>
-          <strong>Profit by Month</strong>
+          
         
          </div> 
 
@@ -268,6 +267,41 @@
 
         <script>
           task();
+          document.querySelector('#zoomarea1').onclick = () =>{
+  document.querySelector('.popupchart').style.display='block';
+  document.querySelector('main .container2 .map').style.display='none';
+  document.querySelector('.popupchart .coppyarea1').style.display='block'
+
+}
+document.querySelector('#zoomarea2').onclick = () =>{
+  document.querySelector('.popupchart').style.display='block';
+  document.querySelector('main .container2 .map').style.display='none';
+  document.querySelector('.popupchart .coppyarea2').style.display='block'
+
+}
+document.querySelector('#zoomrow').onclick = () =>{
+  document.querySelector('.popupchart').style.display='block';
+  document.querySelector('main .container2 .map').style.display='none';
+  document.querySelector('.popupchart .coppyrow').style.display='block'
+
+}
+document.querySelector('#zoomrow2').onclick = () =>{
+  document.querySelector('.popupchart').style.display='block';
+  document.querySelector('main .container2 .map').style.display='none';
+  document.querySelector('.popupchart .coppyrow2').style.display='block'
+
+}
+
+          document.querySelector('.popupchart> logo').onclick = () =>{
+            document.querySelector('.popupchart .coppyarea1').style.display='none';
+            document.querySelector('.popupchart .coppyarea2').style.display='none';         
+            document.querySelector('.popupchart .coppyrow').style.display='none';         
+            document.querySelector('.popupchart .coppyrow2').style.display='none';                  
+  document.querySelector('.popupchart').style.display='none';
+  document.querySelector('main .container2 .map').style.display='block';
+  
+
+          }
           
         </script>
         
