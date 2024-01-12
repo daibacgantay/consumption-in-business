@@ -209,7 +209,12 @@ pieChart
   .group(valueGroup2)
   .legend(dc.legend().x(500).y(100).gap(5))
   .ordinalColors(['#D9B600', '#205EC9', '#D14A1F', '#573504'])
-  .label(d => ((d.value/total)*100).toFixed(1) + "%")
+  .label(function(d) {
+    return null; // Set the label to null
+})
+  .title(function(d) {
+    return 'Category: ' + d.key + '\nRevenue: $' + changenum(d.value);
+});
   
 
   pieChartcoppy
@@ -219,7 +224,12 @@ pieChart
   .group(valueGroup2)
   .legend(dc.legend().x(500).y(100).gap(5))
   .ordinalColors(['#D9B600', '#205EC9', '#D14A1F', '#573504'])
-  .label(d => ((d.value/total)*100).toFixed(1) + "%")
+  .label(function(d) {
+    return null; // Set the label to null
+})
+  .title(function(d) {
+    return 'Category: ' + d.key + '\nRevenue: $' + changenum(d.value);
+});
 
 
  // Row Chart - Customer Segmentation Chart
