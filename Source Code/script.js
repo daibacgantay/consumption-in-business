@@ -204,10 +204,10 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
 
 pieChart
   .width(630)
-  .height(330)
+  .height(260)
   .dimension(categoryDimension)
   .group(valueGroup2)
-  .legend(dc.legend().x(500).y(100).gap(5))
+  .legend(dc.legend().x(500).y(50).gap(5))
   .ordinalColors(['#D9B600', '#205EC9', '#D14A1F', '#573504'])
   .label(function(d) {
     return null; // Set the label to null

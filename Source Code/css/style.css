@@ -532,7 +532,7 @@ main .container2 #item{
   
   
 }
-  #pie{
+  .pie{
   position: absolute;
   bottom: 1px;
   left: -40px;
@@ -554,7 +554,10 @@ main .container2 .area2 {
   
 }
 
-
+#Titlechart{
+  font-size: 23px;
+  text-align: center;
+}
 
 main .container2 .row{
   background-color: #ffffff;
@@ -568,6 +571,7 @@ main .container2 .row .scatterlegend h4 {
 }
 main .container2 .row .scatterlegend #Customericon{
   margin-left: 300px;
+  margin-top: 18px;
   width: 10px;
   height: 10px;
   position: absolute;
@@ -575,6 +579,7 @@ main .container2 .row .scatterlegend #Customericon{
 }
 main .container2 .row .scatterlegend #Coporateicon{
   margin-left: 480px;
+  margin-top: 18px;
   width: 10px;
   height: 10px;
   position: absolute;
@@ -582,6 +587,7 @@ main .container2 .row .scatterlegend #Coporateicon{
 }
 main .container2 .row .scatterlegend #Homeicon{
   margin-left: 630px;
+  margin-top: 18px;
   width: 10px;
   height: 10px;
   position: absolute;
@@ -589,6 +595,7 @@ main .container2 .row .scatterlegend #Homeicon{
 }
 main .container2 .row .scatterlegend #Home{
   margin-left: 320px;
+  margin-top: 18px;
   display: inline-block;
   width: 100px;
   height: 10px;
@@ -597,6 +604,7 @@ main .container2 .row .scatterlegend #Home{
 main .container2 .row .scatterlegend #Coporate{
   margin-left: 500px;
   display: inline-block;
+  margin-top: 18px;
   width: 50px;
   height: 10px;
   position: absolute;
@@ -604,6 +612,7 @@ main .container2 .row .scatterlegend #Coporate{
 
 main .container2 .row .scatterlegend #Customer{
   margin-left: 650px;
+  margin-top: 18px;
   display: inline-block;
   width: 50px;
   height: 10px;
