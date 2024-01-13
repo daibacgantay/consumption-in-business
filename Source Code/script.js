@@ -219,7 +219,7 @@ pieChart
     }
     let label = d.key;
     if (all.value()) {
-        label = `(${Math.floor(d.value / all.value()*100)}%)`;
+        label = `(${numberFormat(d.value / all.value()*100)}%)`;
     }
     return label;
 })
