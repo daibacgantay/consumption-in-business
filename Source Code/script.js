@@ -22,7 +22,7 @@ function task(){
 var groupname = "marker-select";
 var Areachart1  = dc.lineChart(".area1", groupname);
 var Areachart2  = dc.lineChart(".area2", groupname);
-var rowChart = dc.rowChart(".row",groupname); // , 'myChartGroup');
+//var rowChart = dc.rowChart(".row",groupname); // , 'myChartGroup');
 var rowChart2 = dc.rowChart(".row2",groupname); // , 'myChartGroup');
 var pieChart = dc.pieChart("#pie", groupname); //, 'myChartGroup');
 var marker = dc_leaflet.markerChart(".map",groupname)
@@ -31,10 +31,10 @@ var numberDisplay2 = dc.numberDisplay("#profitnum", groupname);
 var numberDisplay3 = dc.numberDisplay("#ordervalue", groupname);
 var numberDisplay4 = dc.numberDisplay("#marginvalue", groupname);
 var numberDisplay5 = dc.numberDisplay("#Avgday", groupname);
-
+var bubbleChart = dc.bubbleChart(".row", groupname);
 var Areachart1copy  = dc.lineChart(".coppyarea1", groupname);
 var Areachart2copy  = dc.lineChart(".coppyarea2", groupname);
-var rowChartcoppy = dc.rowChart(".coppyrow",groupname);
+// var rowChartcoppy = dc.rowChart(".coppyrow",groupname);
 var rowChart2coppy = dc.rowChart(".coppyrow2",groupname);
 var pieChartcoppy = dc.pieChart("#coppypie", groupname);
 var markercoppy = dc_leaflet.markerChart(".mmap",groupname)
@@ -59,7 +59,7 @@ var clusterMap = L.map('cluster-map', {
 d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/main/Data/data_use_for_webcode.csv", rowConverter)
  .then(function(Data) {
    var mycrossfilter = crossfilter(Data);
-
+   const numberFormat = d3.format('.1f');
    // marker map chart 
 
         var facilities = mycrossfilter.dimension(function(d) { return d["geo"]; });
@@ -233,48 +233,115 @@ pieChart
 
 
  // Row Chart - Customer Segmentation Chart
- var genderDimension = mycrossfilter.dimension(function(Data) { 
-  return Data.Segment; 
-});
-var genderGroup = genderDimension.group().reduceSum(function(d) {
-  return d.Revenue;
-});
+//  var genderDimension = mycrossfilter.dimension(function(Data) { 
+//   return Data.Segment; 
+// });
+// var genderGroup = genderDimension.group().reduceSum(function(d) {
+//   return d.Revenue;
+// });
 
+var customerTypeDimension = mycrossfilter.dimension(function (d) { return d.Segment; });
+
+
+   var ordersGroup = customerTypeDimension.group().reduceCount();
+   var averageOrderValueGroup = customerTypeDimension.group().reduce(
+       function (p, v) {
+           p.count++;
+           p.total += +v.Revenue;
+           p.average = p.total / p.count;
+           return p;
+       },
+       function (p, v) {
+           p.count--;
+           if (p.count === 0) {
+               p.total = 0;
+               p.average = 0;
+           } else {
+               p.total -= +v.Revenue;
+               p.average = p.total / p.count;
+           }
+           return p;
+       },
+       function () {
+           return { count: 0, total: 0, average: 0 };
+       }
+   );
+
+   var totalRevenueGroup = customerTypeDimension.group().reduceSum(function (d) { return +d.Revenue; });
+
+
+
+   bubbleChart
+   .dimension(customerTypeDimension)
+   .group(averageOrderValueGroup)
+   .width(800)
+   .height(300)
+   .margins({ top: 10, right: 50, bottom: 50, left: 50 })
+   .x(d3.scaleLinear().domain([0,30000]))
+    .y(d3.scaleLinear().domain([250,400]))
+    .label(p => p.key)
+    // .r(d3.scaleLinear().domain([1000, 20000]))
+    .yAxisPadding(50)
+    .xAxisPadding(1000)
+   .yAxisLabel('Average Order Value')
+   .xAxisLabel('Customer Type')
+   .keyAccessor(function (p) { return p.value.count; })
+   .valueAccessor(function (p) { return p.value.average; })
+   .radiusValueAccessor(function (p) { return p.value.total; })
+   .maxBubbleRelativeSize(0.05)
+   .renderHorizontalGridLines(true)
+   .renderVerticalGridLines(true)
+   .renderLabel(true)
+   .renderTitle(true)
+   .elasticX(true)
+   .elasticY(true)
+   .elasticRadius(true)
+   .brushOn(false)
+   .transitionDuration(1000)
+   .colors(d3.schemeRdYlGn[3])
+        //(optional) define color domain to match your data domain if you want to bind data or color
+    .colorDomain([450,475])
+    .title(p => [
+          p.key,
+          `Count: ${numberFormat(p.value.count)}`,
+          `Average: ${numberFormat(p.value.average)}`,
+          `Total Revenue: ${numberFormat(p.value.total)}`
+      ].join('\n'))
    
-rowChart
-  .width(680)
-  .height(300)
-  .dimension(genderDimension)
-  .group(genderGroup)
-  .margins({top: 30, right: 10, bottom: 40, left:20})
-  .ordinalColors(['#0E5E9C'])
-  // .renderLabel(null)
-  // .label(d => d.key.split('.')[1])
-  .ordering(function(d) { return -d.value; }) // Order by value in descending order
-  .cap(3)
-  .elasticX(true)
-  .xAxis().ticks(4);
-  //  .on('renderlet', function(chart) {
-  //  // Add onClick event to the rows
-  //   chart.selectAll('g.row').on('click', function(d) {
-  //     // Access the data of the clicked row
-  //    // Add your custom onClick logic here
-  //          console.log('Clicked:', d);
-  //   });
-  // });
+// rowChart
+//   .width(680)
+//   .height(300)
+//   .dimension(genderDimension)
+//   .group(genderGroup)
+//   .margins({top: 30, right: 10, bottom: 40, left:20})
+//   .ordinalColors(['#0E5E9C'])
+//   // .renderLabel(null)
+//   // .label(d => d.key.split('.')[1])
+//   .ordering(function(d) { return -d.value; }) // Order by value in descending order
+//   .cap(3)
+//   .elasticX(true)
+//   .xAxis().ticks(4);
+//   //  .on('renderlet', function(chart) {
+//   //  // Add onClick event to the rows
+//   //   chart.selectAll('g.row').on('click', function(d) {
+//   //     // Access the data of the clicked row
+//   //    // Add your custom onClick logic here
+//   //          console.log('Clicked:', d);
+//   //   });
+//   // });
 
 
-  rowChartcoppy
-  .width(680)
-  .height(300)
-  .dimension(genderDimension)
-  .group(genderGroup)
-  .margins({top: 30, right: 10, bottom: 40, left:20})
-  .ordinalColors(['#0E5E9C'])
-  .ordering(function(d) { return -d.value; }) // Order by value in descending order
-  .cap(3)
-  .elasticX(true)
-  .xAxis().ticks(4);
+  // rowChartcoppy
+  // .width(680)
+  // .height(300)
+  // .dimension(genderDimension)
+  // .group(genderGroup)
+  // .margins({top: 30, right: 10, bottom: 40, left:20})
+  // .ordinalColors(['#0E5E9C'])
+  // .ordering(function(d) { return -d.value; }) // Order by value in descending order
+  // .cap(3)
+  // .elasticX(true)
+  // .xAxis().ticks(4);
 
  // Row chart - Geographic Analysis 
  var RegionDimension = mycrossfilter.dimension(function(d) { 
