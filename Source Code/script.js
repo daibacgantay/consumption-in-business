@@ -60,6 +60,10 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
  .then(function(Data) {
    var mycrossfilter = crossfilter(Data);
    const numberFormat = d3.format('.1f');
+   const all = mycrossfilter.groupAll().reduceSum(function(d) {
+    return d.Revenue;
+  });
+   
    // marker map chart 
 
         var facilities = mycrossfilter.dimension(function(d) { return d["geo"]; });
@@ -209,9 +213,19 @@ pieChart
   .group(valueGroup2)
   .legend(dc.legend().x(500).y(50).gap(5))
   .ordinalColors(['#D9B600', '#205EC9', '#D14A1F', '#573504'])
-  .label(function(d) {
-    return null; // Set the label to null
+  .label(d => {
+    if (pieChart.hasFilter() && !pieChart.hasFilter(d.key)) {
+        return `${d.key}(0%)`;
+    }
+    let label = d.key;
+    if (all.value()) {
+        label = `(${Math.floor(d.value / all.value()*100)}%)`;
+    }
+    return label;
 })
+//   .label(function(d) {
+//     return null; // Set the label to null
+// })
   .title(function(d) {
     return 'Category: ' + d.key + '\nRevenue: $' + changenum(d.value);
 });
