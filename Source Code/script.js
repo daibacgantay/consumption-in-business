@@ -150,10 +150,10 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
 
 // Area Chart 2
 
-  var Electronic_profit=MonthDimension.group().reduceSum(function(d) {if (d.Product_Category === "Electronic") {return d.Revenue;}else{return 0;}});
-   var Fashion_profit=MonthDimension.group().reduceSum(function(d) {if (d.Product_Category === "Fashion") {return d.Revenue;}else{return 0;}});
-   var Auto_profit=MonthDimension.group().reduceSum(function(d) {if (d.Product_Category === "Auto & Accessories") {return d.Revenue;}else{return 0;}});
-   var Home_profit=MonthDimension.group().reduceSum(function(d) {if (d.Product_Category === "Home & Furniture") {return d.Revenue;}else{return 0;}});
+  var Electronic_profit=MonthDimension.group().reduceSum(function(d) {if (d.Product_Category === "Electronic") {return d.Profit;}else{return 0;}});
+   var Fashion_profit=MonthDimension.group().reduceSum(function(d) {if (d.Product_Category === "Fashion") {return d.Profit;}else{return 0;}});
+   var Auto_profit=MonthDimension.group().reduceSum(function(d) {if (d.Product_Category === "Auto & Accessories") {return d.Profit;}else{return 0;}});
+   var Home_profit=MonthDimension.group().reduceSum(function(d) {if (d.Product_Category === "Home & Furniture") {return d.Profit;}else{return 0;}});
 
    
 
