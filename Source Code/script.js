@@ -102,7 +102,7 @@ d3.csv("https://raw.githubusercontent.com/daibacgantay/consumption-in-business/m
    var Auto_Revenue=MonthDimension.group().reduceSum(function(d) {if (d.Product_Category === "Auto & Accessories") {return d.Revenue;}else{return 0;}});
    var Home_Revenue=MonthDimension.group().reduceSum(function(d) {if (d.Product_Category === "Home & Furniture") {return d.Revenue;}else{return 0;}});
    
-   Areachart1.width(650)
+   Areachart1.width(700)
    .height(280)
    .x(d3.scaleLinear().domain([1,12]))
     .dimension(MonthDimension)
@@ -222,7 +222,7 @@ pieChart
   .height(330)
   .dimension(categoryDimension)
   .group(valueGroup2)
-  .legend(dc.legend().x(500).y(100).gap(5))
+  .legend(dc.legend().x(500).y(200).gap(5))
   .ordinalColors(['#D9B600', '#205EC9', '#D14A1F', '#573504'])
   .label(function(d) {
     return null; // Set the label to null
@@ -275,39 +275,43 @@ var customerTypeDimension = mycrossfilter.dimension(function (d) { return d.Segm
    .dimension(customerTypeDimension)
    .group(averageOrderValueGroup)
    .width(800)
-   .height(300)
-   .margins({ top: 10, right: 50, bottom: 50, left: 50 })
+   .height(280)
+   .margins({ top: 30, right: 50, bottom: 40, left: 50 })
+   .legend(dc.legend().x(400).y(200).itemHeight(13).gap(5))
    .x(d3.scaleLinear().domain([0,30000]))
     .y(d3.scaleLinear().domain([250,400]))
-    .label(p => p.key)
-    // .r(d3.scaleLinear().domain([1000, 20000]))
+    // .label(p => p.key)
     .yAxisPadding(50)
     .xAxisPadding(1000)
    .yAxisLabel('Average Order Value')
-   .xAxisLabel('Customer Type')
+   .xAxisLabel('Count of Order')
    .keyAccessor(function (p) { return p.value.count; })
    .valueAccessor(function (p) { return p.value.average; })
    .radiusValueAccessor(function (p) { return p.value.total; })
    .maxBubbleRelativeSize(0.05)
    .renderHorizontalGridLines(true)
    .renderVerticalGridLines(true)
-   .renderLabel(true)
+   .renderLabel(false)
    .renderTitle(true)
    .elasticX(true)
    .elasticY(true)
    .elasticRadius(true)
    .brushOn(false)
    .transitionDuration(1000)
-   .colors(d3.schemeRdYlGn[3])
-        //(optional) define color domain to match your data domain if you want to bind data or color
-    .colorDomain([450,475])
+   .colorAccessor(p => p.key)
+   .ordinalColors(['#ac2525', '#1B8043', '#FF14D8'])
+    // .colors(d3.scaleOrdinal(d3.schemeCategory10))
     .title(p => [
           p.key,
           `Count: ${numberFormat(p.value.count)}`,
           `Average: ${numberFormat(p.value.average)}`,
           `Total Revenue: ${numberFormat(p.value.total)}`
       ].join('\n'))
-   
+    // Create the legend
+  // var legend = dc.legend().x(10).y(10).itemHeight(13).gap(5);
+
+  // Add the legend to the chart
+  // bubbleChart.legend(legend);
 // rowChart
 //   .width(680)
 //   .height(300)

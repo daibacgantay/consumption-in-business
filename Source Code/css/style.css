@@ -562,6 +562,55 @@ main .container2 .row{
   
   
 }
+main .container2 .row .scatterlegend h4 {
+  display: inline-block; /* or use display: inline; */
+  /* margin-left: 10px; */
+}
+main .container2 .row .scatterlegend #Customericon{
+  margin-left: 300px;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  background-color: #f124cf;
+}
+main .container2 .row .scatterlegend #Coporateicon{
+  margin-left: 480px;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  background-color: #499e6b;
+}
+main .container2 .row .scatterlegend #Homeicon{
+  margin-left: 630px;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  background-color: #ae6e6e;
+}
+main .container2 .row .scatterlegend #Home{
+  margin-left: 320px;
+  display: inline-block;
+  width: 100px;
+  height: 10px;
+  position: absolute;
+}
+main .container2 .row .scatterlegend #Coporate{
+  margin-left: 500px;
+  display: inline-block;
+  width: 50px;
+  height: 10px;
+  position: absolute;
+}
+
+main .container2 .row .scatterlegend #Customer{
+  margin-left: 650px;
+  display: inline-block;
+  width: 50px;
+  height: 10px;
+  position: absolute;
+  
+  
+}
 main .container2 .map{
   background-color: #ffffff;
   border-radius: var(--card-border-radius);
