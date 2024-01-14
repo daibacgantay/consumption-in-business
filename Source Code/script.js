@@ -215,7 +215,7 @@ pieChart
   .ordinalColors(['#D9B600', '#205EC9', '#D14A1F', '#573504'])
   .label(d => {
     if (pieChart.hasFilter() && !pieChart.hasFilter(d.key)) {
-        return `${d.key}(0%)`;
+        return `(0%)`;
     }
     let label = d.key;
     if (all.value()) {
